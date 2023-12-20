@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import Header from "./components/Header";
+import Card from "./components/Card";
 const App = () => {
-  const [deals, setDeals] = useState(null);
+  const [deals, setDeals] = useState([]);
   const getDeals = async () => {
     try {
       const response = await fetch("https:localhost:8000/deals", {
@@ -9,13 +10,13 @@ const App = () => {
       });
       const data = await response.json();
       setDeals(data);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
   };
   useEffect(() => {
-    getDeals(), [];
-  });
+    getDeals();
+  }, []);
   return (
     <div className="app">
       <Header />
@@ -25,7 +26,9 @@ const App = () => {
       <div className="">
         <h2>Best Deals of the Day</h2>
         <div className="feed">
-          {deal?.map((deal = <Card key={deals.pos} item={deal} />))}
+          {deals?.map((deal) => (
+            <Card key={deals.pos} item={deal} />
+          ))}
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const Card = (item) => {
   ).toFixed(0);
   return (
     <div className="card">
-      <div className="igcntn">
+      <div className="img-container">
         <img src={item.url_image} alt={item.title} />
       </div>
       <div className="text-container">

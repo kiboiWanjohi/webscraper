@@ -1,5 +1,5 @@
-const username = PROCESS.env.USERNAME;
-const password = PROCESS.env.PASSWORD;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
 const PORT = 8000;
 const express = require("express");
 const cors = require("cors");
@@ -13,7 +13,7 @@ app.get("/deals", async (req, res) => {
       parse: true,
       pages: 1,
     };
-    await fetch("", {
+    const response = await fetch("", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
